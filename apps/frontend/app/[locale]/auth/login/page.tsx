@@ -126,11 +126,11 @@ export default function LoginPage() {
       let signature: [string, string];
       if (walletType === "argentx") {
         const rawSignature = await signer.signMessage(typedData);
-        console.log(rawSignature);
-        signature = [rawSignature[2], rawSignature[3]];
+        console.log('ArgentX raw signature:', rawSignature);
+        signature = [rawSignature[0], rawSignature[1]]; // ✅ FIXED: Use correct indices
       } else if (walletType === "braavos") {
         const rawSignature = await signer.signMessage(typedData);
-        console.log(rawSignature);
+        console.log('Braavos raw signature:', rawSignature);
         signature = [rawSignature[1], rawSignature[2]];
       } else {
         throw new Error("Unsupported wallet type");
